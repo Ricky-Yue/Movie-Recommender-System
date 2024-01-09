@@ -26,9 +26,8 @@ movies likely to be well-received by the user are suggested.
 descending order of predicted ratings, allowing the user to explore the
 highest-rated suggestions first.
 5. Data Files:
-                   ● u.data: This file contains user ratings for movies, including information such as
-                     user ID, movie ID, rating, and timestamp.
-                   ● u.item: The movie information file provides details like movie ID and movie title.
+● u.data: This file contains user ratings for movies, including information such as user ID, movie ID, rating, and timestamp.
+● u.item: The movie information file provides details like movie ID and movie title.
    
 **Implementation Details**
 User Input and Ratings
