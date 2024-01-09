@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <style>
+        body {
+            font-family: Eurostile, sans-serif;
+            color: white;
+            background-color: #212121;
+        }
+
+        div {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+        }
+
+        h1, h2, h3 {
+            color: #00AECD;
+        }
+
+        hr {
+            border: 2px solid #00AECD;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommended Movies</h1>
+    <table border="1">
+        <tr>
+            <th>Movie Title</th>
+            <th>Predicted Rating</th>
+        </tr>
+        {% for movie in recommended_movies.iterrows() %}
+            <tr>
+                <td>{{ movie[1]['movie_title'] }}</td>
+                <td>{{ movie[1]['predicted_rating'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

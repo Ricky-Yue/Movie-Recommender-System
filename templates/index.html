@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Rating App</title>
+    <style>
+        body {
+            font-family: Eurostile, sans-serif;
+            color: white;
+            background-color: #212121;
+        }
+
+        div {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+        }
+
+
+        h1, h2, h3 {
+            color: #00AECD;
+        }
+
+        hr {
+            border: 2px solid #00AECD;
+        }
+
+        a:visited{
+        color:blue;
+        }
+
+        input[type=submit] {
+            padding: 10px 20px;
+            color: White;
+            background-color: #00AECD;
+        }
+
+        input[type=submit]:hover {
+            background-color: #007997; 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Movie Rating App</h1>
+        <form action="/rate_movie" method="post">
+            <label for="movie_title">Movie Title:</label>
+            <input type="text" name="movie_title" required>
+            <br>
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" name="rating" min="1" max="5" required>
+            <br>
+            <input type="submit" value="Rate Movie">
+        </form>
+    </div>
+
+    <div>
+        <h2>Your Rated Movies:</h2>
+        {% if user_ratings|length > 0 %}
+            <!-- Convert movie titles to a set to ensure uniqueness -->
+            {% set unique_movie_titles = user_ratings['movie_title'].unique() %}
+    
+            <table border="1">
+                <tr>
+                    <th>Movie Title</th>
+                    <th>Rating</th>
+                </tr>
+                {% for movie_title in unique_movie_titles %}
+                    {% set movie_rating = user_ratings[user_ratings['movie_title'] == movie_title]['rating'].iloc[0] %}
+                    <tr>
+                        <td>{{ movie_title }}</td>
+                        <td>{{ movie_rating }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+    
+            {% if user_ratings|length >= 10 %}
+                <p>Congratulations! You have rated 10 movies. You can now <a href="/recommendations">view recommended movies</a>.</p>
+            {% endif %}
+        {% else %}
+            <p>You haven't rated any movies yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
